@@ -1,0 +1,6 @@
+<h1>{{ article.title }}</h1>
+<p>{{ article.created_on }} by {{ article.author }}</p>
+<span>{{ article.tags.all|join:"," }}</span>
+<article>
+    <p>{{ article.content }}</p>
+</article>

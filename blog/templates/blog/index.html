@@ -1,0 +1,17 @@
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <a href="{% url 'article-create' %}">发表文章</a>
+    {% if article_list %}
+        <ul>
+        {% for article in article_list %}
+            <li>
+                <a href="{% url 'article-detail' article.id %}">{{ article.title }}</a>
+                <a href="{% url 'article-edit' article.id %}">编辑</a>
+                <a href="#" hx-confirm="确定要删除此文章?" hx-delete="{% url 'article-delete' article.id %}" hx-trigger="click" hx-target="closest li" hx-swap="delete">删除</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No article are available.</p>
+    {% endif %}
+    <script src="https://unpkg.com/htmx.org@1.8.6" integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx" crossorigin="anonymous"></script>
+</body>
